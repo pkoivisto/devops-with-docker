@@ -1,0 +1,5 @@
+pkoivisto@Pyrys-MacBook-Pro exercises % docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+a232ba7e4740   nginx     "/docker-entrypoint.…"   26 seconds ago   Exited (0) 11 seconds ago             sleepy_bartik
+b557f2e558b2   nginx     "/docker-entrypoint.…"   28 seconds ago   Exited (0) 3 seconds ago              upbeat_vaughan
+36da1173c287   nginx     "/docker-entrypoint.…"   30 seconds ago   Up 29 seconds               80/tcp    pensive_boyd

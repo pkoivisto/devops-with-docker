@@ -1,0 +1,39 @@
+# Situation before removing images and containers
+
+pkoivisto@Pyrys-MacBook-Pro exercises % docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS     NAMES
+a232ba7e4740   nginx     "/docker-entrypoint.…"   2 minutes ago   Exited (0) 2 minutes ago              sleepy_bartik
+b557f2e558b2   nginx     "/docker-entrypoint.…"   3 minutes ago   Exited (0) 2 minutes ago              upbeat_vaughan
+36da1173c287   nginx     "/docker-entrypoint.…"   3 minutes ago   Exited (0) 22 seconds ago             pensive_boyd
+
+pkoivisto@Pyrys-MacBook-Pro exercises % docker images
+REPOSITORY                                TAG                        IMAGE ID       CREATED         SIZE
+nginx                                     latest                     6405d9b26faf   2 weeks ago     135MB
+
+# Remove containers
+pkoivisto@Pyrys-MacBook-Pro exercises % docker container rm a232ba7e4740
+a232ba7e4740
+pkoivisto@Pyrys-MacBook-Pro exercises % docker container rm b557f2e558b2
+b557f2e558b2
+pkoivisto@Pyrys-MacBook-Pro exercises % docker container rm 36da1173c287
+36da1173c287
+
+# Remove image
+pkoivisto@Pyrys-MacBook-Pro exercises % docker image rm nginx
+Untagged: nginx:latest
+Untagged: nginx@sha256:480868e8c8c797794257e2abd88d0f9a8809b2fe956cbfbc05dcc0bca1f7cd43
+Deleted: sha256:6405d9b26fafcc65baf6cbacd0211bd624632da10d18cae7dc42220a00eb7655
+Deleted: sha256:cb8dc76c407372355cfe9455441210e96f06aff9bd4fcea99ac81587eb398c39
+Deleted: sha256:d0ad22106efbc4e8753916804c20933707976dedb491f5e29c626dbe17801bc3
+Deleted: sha256:420d1fea03efc2f1522e1e4a4d8a2636d3f98d2033dde66593602a6c15e0d4f3
+Deleted: sha256:ba9fd2a17a734b7d9806b5743d25285cb60eedf39beb945e9ad015b530336634
+Deleted: sha256:57f1bce6a7925e2775fe334a3ce408309e9c429b15c2451d4ac8bfb6edb2d946
+Deleted: sha256:8097870b0d19c86b38ab21c74cb3f8412ff3d872e9f864ec5b4cbec118bd4229
+
+# Submission: output of docker ps -a and docker images
+
+pkoivisto@Pyrys-MacBook-Pro exercises % docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+pkoivisto@Pyrys-MacBook-Pro exercises % docker image ls
+REPOSITORY     TAG       IMAGE ID  CREATED   SIZE

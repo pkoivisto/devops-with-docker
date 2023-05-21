@@ -1,0 +1,11 @@
+# Start container
+docker run -d -it --name sws devopsdockeruh/simple-web-service:ubuntu
+
+# Start shell process inside container to examine logged contents
+docker exec -it sws bash
+
+# Within container, track lines appended to log file:
+root@24f0c30ca278:/usr/src/app# tail -f text.log
+
+# The following secret message is logged every ten seconds:
+# Secret message is: 'You can find the source code here: https://github.com/docker-hy'

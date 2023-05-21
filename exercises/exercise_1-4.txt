@@ -1,0 +1,14 @@
+# Spin up detached (-d) Ubuntu container running desired process. 
+# Use also flags -it to ensure console input can be forwarded to the container.
+# Use also flag --rm to ensure container is deleted on exit.
+
+docker run -d --rm -it --name dl-website ubuntu sh -c 'while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'
+
+# Start a shell process inside the container in order to install curl
+docker exec -it dl-website bash
+
+# Within container:
+# - Run apt-get update to ensure package information is up to detache
+root@611181a6dd23:/# apt-get update
+# - Install curl
+root@611181a6dd23:/# apt-get install -y curl
