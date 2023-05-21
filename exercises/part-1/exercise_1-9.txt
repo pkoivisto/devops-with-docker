@@ -1,0 +1,10 @@
+# First, we need to create a text.log file on the host filesystem. 
+# If the file does not exist when starting the container with bind option,
+# Docker will attempt to create a directory instead. 
+# See explanation given in https://github.com/docker-hy/docker-hy.github.io/issues/122
+
+$ mkdir ex-9
+$ touch ex-9/text.log
+
+# Having created an empty file, we can now start the container with the correct bind instruction:
+$ docker run -v "$(pwd)/ex-9/text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service
