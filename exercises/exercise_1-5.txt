@@ -1,0 +1,21 @@
+# Pull alpine version of the simple web service:
+$ docker pull devopsdockeruh/simple-web-service:alpine
+
+# Compare image sizes
+$ docker image ls | grep simple-web-service           
+devopsdockeruh/simple-web-service         ubuntu                     4e3362e907d5   2 years ago     83MB
+devopsdockeruh/simple-web-service         alpine                     fd312adc88e0   2 years ago     15.7MB
+
+# The alpine based image is much smaller than the ubuntu based image:
+# less than 20% of the size of the original image, or alternatively almost 60MB smaller.
+
+# Lastly, let's verify that the secret message functionality works for the alpine container as well.
+$ docker run -d --rm -it fd312adc88e0
+1b0e05aa05b3dd0a996039d67663972f8b74eaf3bd8408267852feabe20f9eec
+
+# Start shell inside container
+$ docker exec -it 1b0e05aa05b3dd0a996039d67663972f8b74eaf3bd8408267852feabe20f9eec sh
+# Inside container - let's verify the secret message functionality:
+/usr/src/app # tail -f 
+
+# OK!

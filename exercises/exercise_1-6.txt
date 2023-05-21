@@ -1,0 +1,11 @@
+# The secret message is:
+"This is the secret message"
+
+# The steps to get to the secret message are:
+# 1. Run command given in instructions
+$ docker run -it devopsdockeruh/pull_exercise
+
+# 2. Navigate to dockerhub (hub.docker.com) and search for the image devopsdockeruh/pull_exercise
+# 3. Navigate to the sole search result and see the Overview-tab. The needed input is given there.
+# 4. Type in the input "basics" as instructed to the dockerized application.
+# 5. The secret message is output to STDOUT
