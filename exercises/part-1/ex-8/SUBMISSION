@@ -1,0 +1,6 @@
+# The commands used to run the container
+# 1. Build and tag
+$ docker build . -t web-server
+
+# 2. Run container
+$ docker run web-server
