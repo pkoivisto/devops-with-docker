@@ -1,0 +1,10 @@
+The requested Dockerfile can be found under the path `exercises/part-1/example-frontend/Dockerfile`
+
+Running the dockerized application can be done by copying the abovementioned Dockerfile
+to the root of the example-frontend application and running eg. the following commands:
+
+docker build -t example-frontend .
+docker run -p 8000:5000 example-frontend
+
+We're binding the container port 5000 to the host port 8000, as it was mentioned that
+at least on MacOS the port 5000 may be reserved.
