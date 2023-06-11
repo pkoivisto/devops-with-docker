@@ -1,5 +1,7 @@
 FROM golang:latest
-EXPOSE 8080
+ENV PORT=8080
+ENV REQUEST_ORIGIN=http://example.com
+EXPOSE ${PORT}
 
 WORKDIR /app
 

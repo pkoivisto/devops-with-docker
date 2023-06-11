@@ -1,0 +1,16 @@
+The (updated) Dockerfiles can be found in this repository under the paths 
+exercises/part-1/example-frontend/Dockerfile and exercises/part-1/example-backend/Dockerfile
+
+For building and running the backend container, the following commands were issued - 
+they expect the frontend to be making requests from an origin of http://localhost:8000
+
+docker build -t example-backend .
+docker run -e REQUEST_ORIGIN=http://localhost:8000 -p 8080:8080 example-backend
+
+For building and running the frontend container, the commands are given below.
+Note that we need to pass the REACT_APP_BACKEND_URL variable as a build time argument.
+This is because the value must be available for the static JS files served as the container
+is run.
+
+docker build -t example-frontend --build-arg REACT_APP_BACKEND_URL=http://localhost:8080/ .
+docker run -p 8000:5000 example-frontend
