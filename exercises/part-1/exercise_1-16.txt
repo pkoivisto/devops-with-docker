@@ -1,0 +1,12 @@
+I chose to deploy an app (the same one as in Exercise 1.15) to fly.io.
+
+The steps followed were simple:
+
+1. I installed the CLI client to fly.io with `brew install flyctl`
+2. Sign-up to use fly.io by invoking the command `flyctl auth signup` and then completing the sign-up process.
+3. Invoke `flyctl launch` in the directory containing the relevant Dockerfile as well as files referenced from within the Dockerfile. The flyctl client detected that I probably want to create a deployment from the Dockerfile; after confirming this and answering to a few questions concerning the desired configuration of the app, the client produced a TOML configuration file.
+4. Finally, deploying the app with the command `flyctl deploy`.
+
+The app is running at https://request-logger-app.fly.dev/
+
+The requested Dockerfile, as well as files necessary to build the Dockerfile (index.js and package.json), can be found under part-1/exercises/ex-16/.
