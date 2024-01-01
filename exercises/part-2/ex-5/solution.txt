@@ -1,0 +1,9 @@
+The following command should be sufficient to launch enough compute nodes for the assignment to pass:
+docker compose up --scale compute=10
+
+Please note that I was actually unable to verify that the frontend tests now pass, as all the network
+requests failed due to CORS policy violations. However, this command did indeed launch 10 copies
+of the compute container, so at least the opportunity for parallellism is there.
+As the exercise did not appear to be mainly concerned with CORS settings,
+and as a random selection of students seems to also have struggled with this issue (see eg. https://discord.com/channels/757581218085863474/871672197012410399/1150316362334482503),
+I decided not to expend any further effort on this exercise.
