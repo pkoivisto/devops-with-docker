@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ../../../material-applications/example-backend
+    environment:
+      # NOTE: REQUEST_ORIGIN changed from http://localhost:8000 (exercise 2.8) 
+      # -> http://localhost:80 (exercise 2.9).
+      # This is because with the nginx reverse proxy serving the frontend at 
+      # http://localhost:80, this is what the browsers will set the request origin as
+      # in the request headers that ultimately get directed to the backend.
+      REQUEST_ORIGIN: http://localhost:80
+      REDIS_HOST: redis
+      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: the-boy-who-cried-wolf
+  frontend:
+    build:
+      # NOTE: We no longer need to set the REACT_BACKEND_URL, since
+      # the default backend path set up in frontend.Dockerfile (/api)
+      # now works with the nginx reverse proxy redirecting requests
+      # to http://localhost/api/* to the backend container.
+      context: ../../../material-applications/example-frontend
+  redis:
+    image: redis:latest
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: the-boy-who-cried-wolf
+    volumes:
+      # Note: the bind mount defined below requires the source directory .database/
+      # to exist before running 'docker compose up'
+      - type: bind
+        source: ./database
+        target: /var/lib/postgresql/data
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+
