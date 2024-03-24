@@ -1,0 +1,16 @@
+FROM golang:latest
+ENV PORT=8080
+ENV REQUEST_ORIGIN=http://example.com
+EXPOSE ${PORT}
+
+WORKDIR /app
+
+# Copy project contents
+COPY . .
+
+RUN adduser appuser && chown appuser . && go build && ls | grep -xv server | xargs rm -rf
+
+USER appuser
+
+# Run server
+CMD ["./server"]
