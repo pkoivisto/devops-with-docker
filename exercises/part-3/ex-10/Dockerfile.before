@@ -1,0 +1,17 @@
+FROM node:16
+# Expose port 3000, as expected by the app as defined in index.js.
+EXPOSE 3000
+
+# Perform all actions within the /app directory.
+WORKDIR /app
+
+# Make the index.js file available - it will be executed with node to respond to incoming requests.
+ADD index.js /app
+# Make package.json available for use with npm install.
+ADD package.json /app
+
+# Install NPM dependencies.
+RUN npm install
+
+# Execute index.js with node when this container is run.
+CMD ["node", "index.js"]

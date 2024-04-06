@@ -1,0 +1,24 @@
+# Use the alpine variant of node to get a smaller image.
+FROM node:16-alpine
+# Expose port 3000, as expected by the app as defined in index.js.
+EXPOSE 3000
+
+# Perform all actions within the /app directory.
+WORKDIR /app
+
+# Make the index.js file available - it will be executed with node to respond to incoming requests.
+ADD index.js /app
+# Make package.json available for use with npm install.
+ADD package.json /app
+
+# Perform shell operations within a single command to minimize number of container layers.
+# 1. Installs NPM dependencies
+# 2. Adds non-root user to minimize security risks from escaping the container sandbox
+# 3. Changes ownership of the work directory to allow the non-root user to launch the node process.
+RUN npm install && adduser --disabled-password --no-create-home appuser && chown appuser .
+
+# Run node using a non-root user.
+USER appuser
+
+# Execute index.js with node when this container is run.
+CMD ["node", "index.js"]
